@@ -10,9 +10,14 @@ import SwiftUI
 struct HomeView: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var viewModel: HomeViewModel
+    private let rideHistoryProvider: RideHistoryProviding
 
-    init(viewModel: HomeViewModel) {
+    init(
+        viewModel: HomeViewModel,
+        rideHistoryProvider: RideHistoryProviding = InMemoryRideHistoryProvider()
+    ) {
         self._viewModel = State(initialValue: viewModel)
+        self.rideHistoryProvider = rideHistoryProvider
     }
 
     var body: some View {
@@ -30,6 +35,20 @@ struct HomeView: View {
                 .background(.bar)
         }
         .background(Color(.systemGroupedBackground))
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink {
+                    RideHistoryView(
+                        viewModel: RideHistoryViewModel(
+                            historyProvider: rideHistoryProvider
+                        )
+                    )
+                } label: {
+                    Image(systemName: "clock.arrow.circlepath")
+                }
+                .accessibilityLabel(Text(LocalizedStringKey("rideHistory.open.accessibilityLabel")))
+            }
+        }
         .task {
             await viewModel.load()
         }
