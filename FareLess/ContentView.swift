@@ -36,12 +36,12 @@ struct ContentView: View {
         switch rideState {
         case .idle:
             HomeView(
-                todaySavings: savingsToday,
-                monthlySavings: monthlySavings,
-                lifetimeSavings: lifetimeSavings,
-                completedRideCount: savedRides.count,
-                recentRides: Array(savedRides.prefix(3)),
-                startRide: startRide
+                viewModel: HomeViewModel(
+                    summaryProvider: InMemoryHomeSummaryProvider(
+                        records: savedRides.map(\.homeSavingsRecord)
+                    ),
+                    startRideAction: startRide
+                )
             )
         case .active:
             ActiveRideView(
@@ -65,7 +65,7 @@ struct ContentView: View {
     private var navigationTitle: String {
         switch rideState {
         case .idle:
-            "FareLess"
+            String(localized: "home.navigation.title")
         case .active:
             "Поездка"
         case .result:
@@ -73,20 +73,10 @@ struct ContentView: View {
         }
     }
 
-    private var savingsToday: Int {
-        savedRides
-            .filter { Calendar.current.isDateInToday($0.date) }
-            .reduce(0) { $0 + $1.savingsMinorUnits }
-    }
-
     private var monthlySavings: Int {
         savedRides
             .filter { Calendar.current.isDate($0.date, equalTo: Date(), toGranularity: .month) }
             .reduce(0) { $0 + $1.savingsMinorUnits }
-    }
-
-    private var lifetimeSavings: Int {
-        savedRides.reduce(0) { $0 + $1.savingsMinorUnits }
     }
 
     private func startRide() {
@@ -150,61 +140,13 @@ private struct RidePreview: Identifiable {
     let durationSeconds: Int
     let taxiPriceMinorUnits: Int
     let savingsMinorUnits: Int
-}
 
-private struct HomeView: View {
-    let todaySavings: Int
-    let monthlySavings: Int
-    let lifetimeSavings: Int
-    let completedRideCount: Int
-    let recentRides: [RidePreview]
-    let startRide: () -> Void
-
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
-                SavingsHeader(
-                    title: "Вы сэкономили сегодня",
-                    amountMinorUnits: todaySavings
-                )
-
-                Button(action: startRide) {
-                    Label("Начать поездку", systemImage: "play.fill")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 16)
-                }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
-
-                HStack(spacing: 12) {
-                    MetricTile(title: "За месяц", value: MoneyFormatter.rubles(fromMinorUnits: monthlySavings))
-                    MetricTile(title: "Всего", value: MoneyFormatter.rubles(fromMinorUnits: lifetimeSavings))
-                    MetricTile(title: "Поездки", value: completedRideCount.formatted())
-                }
-
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("Недавние поездки")
-                        .font(.headline)
-
-                    if recentRides.isEmpty {
-                        ContentUnavailableView(
-                            "Пока нет поездок",
-                            systemImage: "scooter",
-                            description: Text("Начните первую поездку, чтобы увидеть экономию.")
-                        )
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 18)
-                    } else {
-                        ForEach(recentRides) { ride in
-                            RidePreviewRow(ride: ride)
-                        }
-                    }
-                }
-            }
-            .padding()
-        }
-        .background(Color(.systemGroupedBackground))
+    var homeSavingsRecord: HomeSavingsRecord {
+        HomeSavingsRecord(
+            finishedAt: date,
+            savingsMinorUnits: savingsMinorUnits,
+            currencyCode: "RUB"
+        )
     }
 }
 
@@ -326,31 +268,6 @@ private struct MetricTile: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(12)
-        .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 8))
-    }
-}
-
-private struct RidePreviewRow: View {
-    let ride: RidePreview
-
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(ride.date, format: .dateTime.day().month().hour().minute())
-                    .font(.headline)
-
-                Text("\(distanceText(ride.distanceMeters)) • \(durationText(ride.durationSeconds))")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            }
-
-            Spacer()
-
-            Text(MoneyFormatter.rubles(fromMinorUnits: ride.savingsMinorUnits))
-                .font(.headline)
-                .foregroundStyle(.green)
-        }
-        .padding()
         .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 8))
     }
 }

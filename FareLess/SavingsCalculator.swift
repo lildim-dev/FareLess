@@ -21,7 +21,6 @@ enum SavingsCalculator {
 
 enum MoneyFormatter {
     static func rubles(fromMinorUnits minorUnits: Int) -> String {
-        let amount = Decimal(minorUnits) / Decimal(100)
-        return amount.formatted(.currency(code: "RUB").precision(.fractionLength(0)))
+        CurrencyFormatter.formattedMinorUnits(minorUnits, currencyCode: "RUB")
     }
 }

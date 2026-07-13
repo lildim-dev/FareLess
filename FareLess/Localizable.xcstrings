@@ -1,22 +1,136 @@
 {
   "sourceLanguage" : "ru",
   "strings" : {
-    "%@ • %@" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ • %2$@"
-          }
-        }
-      }
-    },
     "%lld / %lld" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "%1$lld / %2$lld"
+          }
+        }
+      }
+    },
+    "home.empty.message" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Первая поездка начнёт вашу статистику"
+          }
+        }
+      }
+    },
+    "home.error.retry" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторить"
+          }
+        }
+      }
+    },
+    "home.error.title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось загрузить статистику"
+          }
+        }
+      }
+    },
+    "home.navigation.title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FareLess"
+          }
+        }
+      }
+    },
+    "home.savings.lifetime.accessibilityLabel" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За всё время сэкономлено"
+          }
+        }
+      }
+    },
+    "home.savings.lifetime.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За всё время"
+          }
+        }
+      }
+    },
+    "home.savings.month.accessibilityLabel" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За месяц сэкономлено"
+          }
+        }
+      }
+    },
+    "home.savings.month.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За месяц"
+          }
+        }
+      }
+    },
+    "home.savings.today.accessibilityLabel" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сегодня сэкономлено"
+          }
+        }
+      }
+    },
+    "home.savings.today.subtitle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сэкономлено на такси"
+          }
+        }
+      }
+    },
+    "home.savings.today.title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сегодня"
+          }
+        }
+      }
+    },
+    "home.startRide" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начать поездку"
           }
         }
       }
@@ -103,7 +217,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сколько денег экономит ваш самокат?"
+            "value" : "Сколько экономит ваш самокат?"
           }
         }
       }
@@ -314,31 +428,87 @@
       }
     },
     "Геолокация активна" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geolocation is active"
+          }
+        }
+      }
     },
     "Готово" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finished"
+          }
+        }
+      }
     },
     "Завершить" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finish"
+          }
+        }
+      }
     },
     "Начать поездку" : {
-
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start your journey"
+          }
+        }
+      }
     },
     "Начните первую поездку, чтобы увидеть экономию." : {
-
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start your first journey to see the savings."
+          }
+        }
+      }
     },
     "Недавние поездки" : {
-
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recent trips"
+          }
+        }
+      }
     },
     "Поездка записывается" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trip is being recorded"
+          }
+        }
+      }
     },
     "Поездка сохранена" : {
-
-    },
-    "Пока нет поездок" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The trip has been saved"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
