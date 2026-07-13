@@ -44,11 +44,7 @@ struct ContentView: View {
                 )
             )
         case .active:
-            ActiveRideView(
-                elapsedSeconds: elapsedSeconds,
-                distanceMeters: distanceMeters,
-                finishRide: finishRide
-            )
+            ActiveRideView()
         case .result:
             if let latestResult {
                 RideResultView(
@@ -67,7 +63,7 @@ struct ContentView: View {
         case .idle:
             String(localized: "home.navigation.title")
         case .active:
-            "Поездка"
+            String(localized: "activeRide.navigation.title")
         case .result:
             "Результат"
         }
@@ -147,46 +143,6 @@ private struct RidePreview: Identifiable {
             savingsMinorUnits: savingsMinorUnits,
             currencyCode: "RUB"
         )
-    }
-}
-
-private struct ActiveRideView: View {
-    let elapsedSeconds: Int
-    let distanceMeters: Int
-    let finishRide: () -> Void
-
-    var body: some View {
-        VStack(spacing: 24) {
-            Spacer()
-
-            VStack(spacing: 12) {
-                Label("Геолокация активна", systemImage: "location.fill")
-                    .font(.headline)
-                    .foregroundStyle(.green)
-
-                Text("Поездка записывается")
-                    .font(.largeTitle.bold())
-                    .multilineTextAlignment(.center)
-            }
-
-            HStack(spacing: 12) {
-                MetricTile(title: "Время", value: durationText(elapsedSeconds))
-                MetricTile(title: "Дистанция", value: distanceText(distanceMeters))
-            }
-
-            Spacer()
-
-            Button(role: .destructive, action: finishRide) {
-                Label("Завершить", systemImage: "stop.fill")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
-            }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
-        }
-        .padding()
-        .background(Color(.systemGroupedBackground))
     }
 }
 
