@@ -9,11 +9,23 @@ import Testing
 @testable import FareLess
 
 struct FareLessTests {
+    @Test func savingsEqualsTaxiPriceForPersonalScooter() {
+        let ride = RideDraft(
+            taxiPriceMinorUnits: 62_000,
+            scooterCostMinorUnits: 0,
+            currencyCode: "RUB"
+        )
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
-        // Swift Testing Documentation
-        // https://developer.apple.com/documentation/testing
+        #expect(SavingsCalculator.savingsMinorUnits(for: ride) == 62_000)
     }
 
+    @Test func savingsNeverReturnsNegativeAmount() {
+        let ride = RideDraft(
+            taxiPriceMinorUnits: 10_000,
+            scooterCostMinorUnits: 12_000,
+            currencyCode: "RUB"
+        )
+
+        #expect(SavingsCalculator.savingsMinorUnits(for: ride) == 0)
+    }
 }
