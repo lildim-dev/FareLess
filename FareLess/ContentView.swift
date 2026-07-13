@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var hasCompletedOnboarding = false
+    @AppStorage(OnboardingStorageKey.hasCompletedOnboarding) private var hasCompletedOnboarding = false
     @State private var rideState: RideState = .idle
     @State private var elapsedSeconds = 0
     @State private var distanceMeters = 0
@@ -150,87 +150,6 @@ private struct RidePreview: Identifiable {
     let durationSeconds: Int
     let taxiPriceMinorUnits: Int
     let savingsMinorUnits: Int
-}
-
-private struct OnboardingView: View {
-    @State private var selection = 0
-
-    let complete: () -> Void
-
-    var body: some View {
-        VStack(spacing: 28) {
-            TabView(selection: $selection) {
-                OnboardingCard(
-                    systemImage: "scooter",
-                    title: "Сколько денег экономит ваш самокат?",
-                    subtitle: "Автоматически считаем стоимость аналогичной поездки на такси."
-                )
-                .tag(0)
-
-                OnboardingCard(
-                    systemImage: "sparkles",
-                    title: "Никаких ручных расчётов",
-                    subtitle: "Просто ездите. FareLess сам покажет экономию после поездки."
-                )
-                .tag(1)
-
-                OnboardingCard(
-                    systemImage: "location.fill",
-                    title: "Разрешения",
-                    subtitle: "Геолокация нужна только во время поездки. Уведомления можно включить позже."
-                )
-                .tag(2)
-            }
-            .tabViewStyle(.page(indexDisplayMode: .always))
-
-            Button {
-                if selection < 2 {
-                    withAnimation {
-                        selection += 1
-                    }
-                } else {
-                    complete()
-                }
-            } label: {
-                Text(selection < 2 ? "Дальше" : "Начать")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
-            }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
-            .padding(.horizontal)
-        }
-        .padding(.vertical, 24)
-        .background(Color(.systemGroupedBackground))
-    }
-}
-
-private struct OnboardingCard: View {
-    let systemImage: String
-    let title: String
-    let subtitle: String
-
-    var body: some View {
-        VStack(spacing: 22) {
-            Image(systemName: systemImage)
-                .font(.system(size: 56, weight: .semibold))
-                .foregroundStyle(.green)
-                .accessibilityHidden(true)
-
-            VStack(spacing: 12) {
-                Text(title)
-                    .font(.largeTitle.bold())
-                    .multilineTextAlignment(.center)
-
-                Text(subtitle)
-                    .font(.title3)
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-            }
-        }
-        .padding(28)
-    }
 }
 
 private struct HomeView: View {

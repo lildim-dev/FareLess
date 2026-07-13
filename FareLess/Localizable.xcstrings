@@ -1,0 +1,345 @@
+{
+  "sourceLanguage" : "ru",
+  "strings" : {
+    "%@ • %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ • %2$@"
+          }
+        }
+      }
+    },
+    "%lld / %lld" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld / %2$lld"
+          }
+        }
+      }
+    },
+    "onboarding.action.allow" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешить"
+          }
+        }
+      }
+    },
+    "onboarding.action.next" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Далее"
+          }
+        }
+      }
+    },
+    "onboarding.action.openSettings" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть настройки"
+          }
+        }
+      }
+    },
+    "onboarding.action.skip" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пропустить"
+          }
+        }
+      }
+    },
+    "onboarding.action.start" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начать"
+          }
+        }
+      }
+    },
+    "onboarding.illustration.accessibilityLabel" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Иллюстрация"
+          }
+        }
+      }
+    },
+    "onboarding.page1.description" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FareLess рассчитывает ориентировочную стоимость аналогичной поездки на такси и показывает, сколько денег вы сохранили."
+          }
+        }
+      }
+    },
+    "onboarding.page1.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сколько денег экономит ваш самокат?"
+          }
+        }
+      }
+    },
+    "onboarding.page2.description" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запускайте поездку, садитесь на самокат и отправляйтесь в путь. FareLess рассчитает расстояние, длительность и примерную стоимость такси."
+          }
+        }
+      }
+    },
+    "onboarding.page2.disclaimer" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стоимость такси является ориентировочной."
+          }
+        }
+      }
+    },
+    "onboarding.page2.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Никаких ручных расчётов"
+          }
+        }
+      }
+    },
+    "onboarding.pageIndicator.accessibilityLabel" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущая страница onboarding"
+          }
+        }
+      }
+    },
+    "onboarding.permission.status.authorized" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешено"
+          }
+        }
+      }
+    },
+    "onboarding.permission.status.denied" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доступ не разрешён"
+          }
+        }
+      }
+    },
+    "onboarding.permission.status.failed" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось проверить доступ"
+          }
+        }
+      }
+    },
+    "onboarding.permission.status.notDetermined" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ещё не запрашивалось"
+          }
+        }
+      }
+    },
+    "onboarding.permission.status.requesting" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запрашиваем доступ"
+          }
+        }
+      }
+    },
+    "onboarding.permission.status.restricted" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ограничено настройками устройства"
+          }
+        }
+      }
+    },
+    "onboarding.permissions.description" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FareLess использует геолокацию только во время активной поездки, чтобы записать маршрут и рассчитать расстояние. История поездок хранится локально на устройстве."
+          }
+        }
+      }
+    },
+    "onboarding.permissions.icon.accessibilityLabel" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешения"
+          }
+        }
+      }
+    },
+    "onboarding.permissions.location.deniedExplanation" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы записывать поездки, FareLess нужен доступ к геолокации во время использования приложения. Вы можете включить его в настройках."
+          }
+        }
+      }
+    },
+    "onboarding.permissions.location.description" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Необходима для записи поездки"
+          }
+        }
+      }
+    },
+    "onboarding.permissions.location.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Геолокация"
+          }
+        }
+      }
+    },
+    "onboarding.permissions.notifications.description" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сообщат о результате поездки"
+          }
+        }
+      }
+    },
+    "onboarding.permissions.notifications.optional" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уведомления необязательны. Вы можете продолжить без них."
+          }
+        }
+      }
+    },
+    "onboarding.permissions.notifications.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уведомления"
+          }
+        }
+      }
+    },
+    "onboarding.permissions.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешения"
+          }
+        }
+      }
+    },
+    "Геолокация активна" : {
+
+    },
+    "Готово" : {
+
+    },
+    "Завершить" : {
+
+    },
+    "Начать поездку" : {
+
+    },
+    "Начните первую поездку, чтобы увидеть экономию." : {
+
+    },
+    "Недавние поездки" : {
+
+    },
+    "Поездка записывается" : {
+
+    },
+    "Поездка сохранена" : {
+
+    },
+    "Пока нет поездок" : {
+
+    }
+  },
+  "version" : "1.0"
+}
