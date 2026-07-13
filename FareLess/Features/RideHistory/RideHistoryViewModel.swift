@@ -92,7 +92,7 @@ enum RideHistoryFormatters {
         let formatter = DateComponentsFormatter()
         formatter.calendar = .autoupdatingCurrent
         formatter.unitsStyle = .short
-        formatter.allowedUnits = [.minute]
+        formatter.allowedUnits = [.hour, .minute]
         formatter.zeroFormattingBehavior = .dropAll
 
         return formatter.string(from: seconds) ?? ""

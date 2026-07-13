@@ -11,20 +11,20 @@ import SwiftUI
 struct RideRouteMapView: View {
     let coordinates: [CLLocationCoordinate2D]
     let startCoordinate: CLLocationCoordinate2D?
-    let endCoordinate: CLLocationCoordinate2D?
+    let finishCoordinate: CLLocationCoordinate2D?
 
     @State private var position: MapCameraPosition
 
     init(
         coordinates: [CLLocationCoordinate2D],
         startCoordinate: CLLocationCoordinate2D?,
-        endCoordinate: CLLocationCoordinate2D?,
-        region: MKCoordinateRegion?
+        finishCoordinate: CLLocationCoordinate2D?,
+        position: MapCameraPosition
     ) {
         self.coordinates = coordinates
         self.startCoordinate = startCoordinate
-        self.endCoordinate = endCoordinate
-        self._position = State(initialValue: region.map { .region($0) } ?? .automatic)
+        self.finishCoordinate = finishCoordinate
+        self._position = State(initialValue: position)
     }
 
     var body: some View {
@@ -35,7 +35,7 @@ struct RideRouteMapView: View {
                 description: nil
             )
             .frame(maxWidth: .infinity)
-            .frame(height: 260)
+            .frame(height: 300)
             .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 8))
         } else {
             Map(position: $position) {
@@ -53,16 +53,16 @@ struct RideRouteMapView: View {
                     .tint(.green)
                 }
 
-                if let endCoordinate {
+                if let finishCoordinate {
                     Marker(
-                        String(localized: "rideDetails.route.end.accessibilityLabel"),
+                        String(localized: "rideDetails.route.finish.accessibilityLabel"),
                         systemImage: "flag.fill",
-                        coordinate: endCoordinate
+                        coordinate: finishCoordinate
                     )
                     .tint(.red)
                 }
             }
-            .frame(height: 260)
+            .frame(height: 300)
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .accessibilityLabel(Text(LocalizedStringKey("rideDetails.map.accessibilityLabel")))
         }

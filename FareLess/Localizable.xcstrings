@@ -520,7 +520,6 @@
       }
     },
     "rideDetails.date.title" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -530,8 +529,27 @@
         }
       }
     },
+    "rideDetails.date.todayFormat" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сегодня, %@"
+          }
+        }
+      }
+    },
+    "rideDetails.date.yesterdayFormat" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вчера, %@"
+          }
+        }
+      }
+    },
     "rideDetails.distance.title" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -542,7 +560,6 @@
       }
     },
     "rideDetails.duration.title" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -567,17 +584,28 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Поездка"
+            "value" : "Детали поездки"
           }
         }
       }
     },
     "rideDetails.route.end.accessibilityLabel" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Окончание маршрута"
+          }
+        }
+      }
+    },
+    "rideDetails.route.finish.accessibilityLabel" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конец маршрута"
           }
         }
       }
@@ -608,6 +636,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вы сэкономили"
+          }
+        }
+      }
+    },
+    "rideDetails.taxiPrice.title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стоимость такси"
           }
         }
       }

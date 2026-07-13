@@ -8,18 +8,28 @@
 import Foundation
 import MapKit
 import Observation
+import SwiftUI
 
 @MainActor
 @Observable
 final class RideDetailsViewModel {
     let ride: RideHistoryItem
+    private let calendar: Calendar
 
-    init(ride: RideHistoryItem) {
+    init(
+        ride: RideHistoryItem,
+        calendar: Calendar = .current
+    ) {
         self.ride = ride
+        self.calendar = calendar
     }
 
     var formattedSavings: String {
         CurrencyFormatter.formattedMinorUnits(ride.savingsMinorUnits, currencyCode: "RUB")
+    }
+
+    var formattedTaxiPrice: String {
+        CurrencyFormatter.formattedMinorUnits(ride.taxiPriceMinorUnits, currencyCode: "RUB")
     }
 
     var formattedDistance: String {
@@ -31,7 +41,17 @@ final class RideDetailsViewModel {
     }
 
     var formattedDate: String {
-        ride.startedAt.formatted(date: .abbreviated, time: .shortened)
+        let time = ride.startedAt.formatted(date: .omitted, time: .shortened)
+
+        if calendar.isDateInToday(ride.startedAt) {
+            return String(format: String(localized: "rideDetails.date.todayFormat"), time)
+        }
+
+        if calendar.isDateInYesterday(ride.startedAt) {
+            return String(format: String(localized: "rideDetails.date.yesterdayFormat"), time)
+        }
+
+        return ride.startedAt.formatted(date: .long, time: .shortened)
     }
 
     var routeCoordinates: [CLLocationCoordinate2D] {
@@ -44,11 +64,19 @@ final class RideDetailsViewModel {
         routeCoordinates.first
     }
 
-    var endCoordinate: CLLocationCoordinate2D? {
+    var finishCoordinate: CLLocationCoordinate2D? {
         routeCoordinates.last
     }
 
-    var mapRegion: MKCoordinateRegion? {
+    var mapPosition: MapCameraPosition {
+        guard let region = mapRegion else {
+            return .automatic
+        }
+
+        return .region(region)
+    }
+
+    private var mapRegion: MKCoordinateRegion? {
         let coordinates = routeCoordinates
 
         guard let firstCoordinate = coordinates.first else {

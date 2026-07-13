@@ -10,6 +10,7 @@ import Foundation
 struct RideHistoryItem: Identifiable, Hashable {
     let id: UUID
     let startedAt: Date
+    let taxiPriceMinorUnits: Int
     let savingsMinorUnits: Int
     let distanceMeters: Double
     let durationSeconds: TimeInterval

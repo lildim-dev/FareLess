@@ -20,26 +20,11 @@ struct RideDetailsView: View {
                 RideRouteMapView(
                     coordinates: viewModel.routeCoordinates,
                     startCoordinate: viewModel.startCoordinate,
-                    endCoordinate: viewModel.endCoordinate,
-                    region: viewModel.mapRegion
+                    finishCoordinate: viewModel.finishCoordinate,
+                    position: viewModel.mapPosition
                 )
 
-                DetailSavingsCard(amount: viewModel.formattedSavings)
-
-                VStack(spacing: 12) {
-                    DetailMetricRow(
-                        titleKey: "rideDetails.distance.title",
-                        value: viewModel.formattedDistance
-                    )
-                    DetailMetricRow(
-                        titleKey: "rideDetails.duration.title",
-                        value: viewModel.formattedDuration
-                    )
-                    DetailMetricRow(
-                        titleKey: "rideDetails.date.title",
-                        value: viewModel.formattedDate
-                    )
-                }
+                RideDetailsInformationCard(viewModel: viewModel)
             }
             .padding(16)
         }
@@ -49,47 +34,66 @@ struct RideDetailsView: View {
     }
 }
 
-private struct DetailSavingsCard: View {
-    let amount: String
+private struct RideDetailsInformationCard: View {
+    let viewModel: RideDetailsViewModel
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(LocalizedStringKey("rideDetails.savings.title"))
-                .font(.headline)
-                .foregroundStyle(.secondary)
-
-            Text(amount)
-                .font(.system(.largeTitle, design: .rounded, weight: .bold))
-                .lineLimit(1)
-                .minimumScaleFactor(0.6)
+        VStack(spacing: 0) {
+            RideDetailRow(
+                title: "rideDetails.date.title",
+                value: viewModel.formattedDate
+            )
+            Divider()
+            RideDetailRow(
+                title: "rideDetails.distance.title",
+                value: viewModel.formattedDistance
+            )
+            Divider()
+            RideDetailRow(
+                title: "rideDetails.duration.title",
+                value: viewModel.formattedDuration
+            )
+            Divider()
+            RideDetailRow(
+                title: "rideDetails.taxiPrice.title",
+                value: viewModel.formattedTaxiPrice
+            )
+            Divider()
+                .padding(.top, 6)
+            RideDetailRow(
+                title: "rideDetails.savings.title",
+                value: viewModel.formattedSavings,
+                isHighlighted: true
+            )
+            .padding(.top, 6)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(20)
         .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 8))
-        .accessibilityElement(children: .combine)
     }
 }
 
-private struct DetailMetricRow: View {
-    let titleKey: String
+private struct RideDetailRow: View {
+    let title: LocalizedStringKey
     let value: String
+    var isHighlighted = false
 
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 12) {
-            Text(LocalizedStringKey(titleKey))
+            Text(title)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
 
             Spacer(minLength: 8)
 
             Text(value)
-                .fontWeight(.semibold)
+                .font(isHighlighted ? .title3.bold() : .body.weight(.semibold))
+                .foregroundStyle(isHighlighted ? Color.green : Color.primary)
                 .multilineTextAlignment(.trailing)
                 .fixedSize(horizontal: false, vertical: true)
         }
         .padding(16)
-        .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 8))
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(title))
+        .accessibilityValue(Text(value))
     }
 }
 
@@ -113,10 +117,43 @@ private struct DetailMetricRow: View {
     }
 }
 
+#Preview("Одна точка") {
+    NavigationStack {
+        RideDetailsView(
+            viewModel: RideDetailsViewModel(
+                ride: RideDetailsPreviewFactory.rideWithSinglePoint
+            )
+        )
+    }
+}
+
+#Preview("Большой текст") {
+    NavigationStack {
+        RideDetailsView(
+            viewModel: RideDetailsViewModel(
+                ride: RideDetailsPreviewFactory.rideWithLongValues
+            )
+        )
+    }
+    .environment(\.dynamicTypeSize, .accessibility3)
+}
+
+#Preview("Тёмная тема") {
+    NavigationStack {
+        RideDetailsView(
+            viewModel: RideDetailsViewModel(
+                ride: RideDetailsPreviewFactory.rideWithRoute
+            )
+        )
+    }
+    .preferredColorScheme(.dark)
+}
+
 private enum RideDetailsPreviewFactory {
     static let rideWithRoute = RideHistoryItem(
         id: UUID(),
         startedAt: Date(),
+        taxiPriceMinorUnits: 62_000,
         savingsMinorUnits: 62_000,
         distanceMeters: 4_700,
         durationSeconds: 18 * 60,
@@ -132,9 +169,37 @@ private enum RideDetailsPreviewFactory {
     static let rideWithoutRoute = RideHistoryItem(
         id: UUID(),
         startedAt: Date(),
+        taxiPriceMinorUnits: 62_000,
         savingsMinorUnits: 62_000,
         distanceMeters: 4_700,
         durationSeconds: 18 * 60,
         route: []
+    )
+
+    static let rideWithSinglePoint = RideHistoryItem(
+        id: UUID(),
+        startedAt: Date(),
+        taxiPriceMinorUnits: 62_000,
+        savingsMinorUnits: 62_000,
+        distanceMeters: 400,
+        durationSeconds: 6 * 60,
+        route: [
+            RideRoutePoint(latitude: 55.751244, longitude: 37.618423)
+        ]
+    )
+
+    static let rideWithLongValues = RideHistoryItem(
+        id: UUID(),
+        startedAt: Date(),
+        taxiPriceMinorUnits: 1_234_567_00,
+        savingsMinorUnits: 1_234_567_00,
+        distanceMeters: 124_700,
+        durationSeconds: 2 * 60 * 60 + 35 * 60,
+        route: [
+            RideRoutePoint(latitude: 55.751244, longitude: 37.618423),
+            RideRoutePoint(latitude: 55.753330, longitude: 37.624000),
+            RideRoutePoint(latitude: 55.756000, longitude: 37.630500),
+            RideRoutePoint(latitude: 55.758200, longitude: 37.637000)
+        ]
     )
 }

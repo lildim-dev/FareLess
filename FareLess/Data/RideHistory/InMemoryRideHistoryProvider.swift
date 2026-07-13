@@ -22,6 +22,7 @@ struct InMemoryRideHistoryProvider: RideHistoryProviding {
             RideHistoryItem(
                 id: UUID(uuidString: "11111111-1111-1111-1111-111111111111") ?? UUID(),
                 startedAt: calendar.date(byAdding: .hour, value: 9, to: today) ?? today,
+                taxiPriceMinorUnits: 62_000,
                 savingsMinorUnits: 62_000,
                 distanceMeters: 4_700,
                 durationSeconds: 18 * 60,
@@ -36,6 +37,7 @@ struct InMemoryRideHistoryProvider: RideHistoryProviding {
             RideHistoryItem(
                 id: UUID(uuidString: "22222222-2222-2222-2222-222222222222") ?? UUID(),
                 startedAt: calendar.date(byAdding: .hour, value: 18, to: yesterday) ?? yesterday,
+                taxiPriceMinorUnits: 54_000,
                 savingsMinorUnits: 54_000,
                 distanceMeters: 3_800,
                 durationSeconds: 16 * 60,
