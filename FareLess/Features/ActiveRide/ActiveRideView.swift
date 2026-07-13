@@ -15,8 +15,8 @@ struct ActiveRideView: View {
     }
 
     @MainActor
-    init() {
-        self._viewModel = State(initialValue: ActiveRideViewModel())
+    init(onFinish: @escaping () -> Void = {}) {
+        self._viewModel = State(initialValue: ActiveRideViewModel(onFinish: onFinish))
     }
 
     var body: some View {
